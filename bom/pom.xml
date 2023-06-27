@@ -31,6 +31,10 @@
         </developer>
     </developers>
 
+    <scm>
+        <url>git@github.com:dmitrpet/spring-criteria-generator.git</url>
+    </scm>
+
     <dependencyManagement>
         <dependencies>
         </dependencies>
