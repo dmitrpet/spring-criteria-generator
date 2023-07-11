@@ -8,4 +8,8 @@ import java.lang.annotation.Target;
 @Target(value = ElementType.TYPE)
 @Retention(value = RetentionPolicy.SOURCE)
 public @interface CriteriaMapper {
+    boolean useCurrentPackage() default true;
+    String packagePath() default "";
+    String suffixMapperName() default "Impl";
+    boolean springComponent() default true;
 }
