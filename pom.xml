@@ -28,4 +28,8 @@
             <artifactId>javapoet</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+
+    </build>
 </project>

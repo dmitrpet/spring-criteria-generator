@@ -13,6 +13,9 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <maven.clean.plugin>3.3.1</maven.clean.plugin>
+        <maven.resources.plugin>3.3.1</maven.resources.plugin>
+        <maven.jar.plugin>3.3.0</maven.jar.plugin>
         <maven.compiler.plugin>3.11.0</maven.compiler.plugin>
         <maven.surefire.plugin>3.1.2</maven.surefire.plugin>
         <junit.jupiter.version>5.9.3</junit.jupiter.version>
@@ -58,15 +61,140 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven.clean.plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>default-clean</id>
+                            <phase>clean</phase>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven.compiler.plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>default-compile</id>
+                            <configuration>
+                                <compilerArgument>-proc:none</compilerArgument>
+                                <includes>
+                                    <include>com/github/dmitrpet/criteriagenerator/SpringCriteriaProcessor.java</include>
+                                </includes>
+<!--                                <parameters>true</parameters>-->
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>compile-project</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>compile</goal>
+                            </goals>
+                            <configuration>
+                                <parameters>true</parameters>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>default-testCompile</id>
+                            <phase>test-compile</phase>
+                            <goals>
+                                <goal>testCompile</goal>
+                            </goals>
+                            <configuration>
+                                <parameters>true</parameters>
+                            </configuration>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <parameters>true</parameters>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>default-test</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven.resources.plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>default-testResources</id>
+                            <phase>process-test-resources</phase>
+                            <goals>
+                                <goal>testResources</goal>
+                            </goals>
+                            <configuration>
+                                <useDefaultDelimiters>true</useDefaultDelimiters>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>default-resources</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>resources</goal>
+                            </goals>
+                            <configuration>
+                                <useDefaultDelimiters>true</useDefaultDelimiters>
+                            </configuration>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <useDefaultDelimiters>true</useDefaultDelimiters>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven.jar.plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>default-jar</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
 </project>
