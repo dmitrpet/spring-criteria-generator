@@ -85,7 +85,6 @@
                                 <includes>
                                     <include>com/github/dmitrpet/criteriagenerator/SpringCriteriaProcessor.java</include>
                                 </includes>
-<!--                                <parameters>true</parameters>-->
                             </configuration>
                         </execution>
                         <execution>
